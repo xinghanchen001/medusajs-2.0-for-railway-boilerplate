@@ -12,6 +12,20 @@ type PaymentDetailsProps = {
 const PaymentDetails = ({ order }: PaymentDetailsProps) => {
   const payment = order.payment_collections?.[0].payments?.[0]
 
+  // Format date with German locale and timezone
+  const formatDateTime = (dateString: string) => {
+    return new Date(dateString).toLocaleString('de-DE', {
+      timeZone: 'Europe/Berlin',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    })
+  }
+
   return (
     <div>
       <Heading level="h2" className="flex flex-row text-3xl-regular my-6">
@@ -45,9 +59,7 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
                     : `${convertToLocale({
                         amount: payment.amount,
                         currency_code: order.currency_code,
-                      })} paid at ${new Date(
-                        payment.created_at ?? ""
-                      ).toLocaleString()}`}
+                      })} paid at ${formatDateTime(payment.created_at ?? "")}`}
                 </Text>
               </div>
             </div>
