@@ -23,16 +23,6 @@ const OrderCard = ({ order }: OrderCardProps) => {
     return order.items?.length ?? 0
   }, [order])
 
-  // Format date with German locale and timezone
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('de-DE', {
-      timeZone: 'Europe/Berlin',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    })
-  }
-
   return (
     <div className="bg-white flex flex-col" data-testid="order-card">
       <div className="uppercase text-large-semi mb-1">
@@ -40,7 +30,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
       </div>
       <div className="flex items-center divide-x divide-gray-200 text-small-regular text-ui-fg-base">
         <span className="pr-2" data-testid="order-created-at">
-          {formatDate(order.created_at)}
+          {new Date(order.created_at).toDateString()}
         </span>
         <span className="px-2" data-testid="order-amount">
           {convertToLocale({

@@ -11,16 +11,6 @@ type OverviewProps = {
 }
 
 const Overview = ({ customer, orders }: OverviewProps) => {
-  // Format date with German locale and timezone
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('de-DE', {
-      timeZone: 'Europe/Berlin',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    })
-  }
-  
   return (
     <div data-testid="overview-page-wrapper">
       <div className="hidden small:block">
@@ -104,7 +94,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                                 Total amount
                               </span>
                               <span data-testid="order-created-date">
-                                {formatDate(order.created_at)}
+                                {new Date(order.created_at).toDateString()}
                               </span>
                               <span
                                 data-testid="order-id"
