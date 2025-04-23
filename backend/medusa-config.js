@@ -193,7 +193,7 @@ const medusaConfig = {
     ...(process.env.PRINTFUL_ACCESS_TOKEN && process.env.PRINTFUL_STORE_ID
       ? [
           {
-            resolve: 'medusa-plugin-printful',
+            resolve: '@vymalo/medusa-printful',
             options: {
               printfulAccessToken: process.env.PRINTFUL_ACCESS_TOKEN,
               storeId: process.env.PRINTFUL_STORE_ID,
